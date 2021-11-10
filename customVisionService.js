@@ -9,10 +9,10 @@ module.exports = {
 function predict(stream) {
     const options = {
         method: 'POST',
-        url: 'https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/6f171ce9-e745-4804-8fb7-4280d497e648/image?iterationId=f7218c18-71f9-4791-8e09-6b684f3d84ca',        
+            url: 'https://eastus.api.cognitive.microsoft.com/customvision/v3.1/Prediction/0f8f9757-1149-4611-875f-33a089bca99b/detect/iterations/RoyabotModel/image?publishedName=RoyabotModel&projectId=0f8f9757-1149-4611-875f-33a089bca99b',
         headers: {
             'Content-Type': 'application/octet-stream',
-            'Prediction-Key': '4c19f7c0db334965bbc5bf5eb7cac44c'
+                'Prediction-Key': '878e5fc9c4674485ba8186ba181cb51f'
         },        
         body: stream
     };

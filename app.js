@@ -21,7 +21,7 @@ const connector = new builder.ChatConnector({
 
 // Setup Restify Server
 const server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, () => {
+server.listen(3978, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 server.use(restify.plugins.bodyParser());
@@ -115,16 +115,16 @@ bot.dialog('royaDetector', [
 // ----------------------------------------------- FUNCION PARA LA DETECION DE IMAGENES ------------------------------------------------------------
 bot.dialog('dialogRoya',[
 	function (session){   
-        
         session.sendTyping();
         if (utils.hasImageAttachment(session)) {
             var stream = utils.getImageStreamFromMessage(session.message);
+            console.log("Bandera 1")
             customVisionService.predict(stream)
                 .then(function (response) {
                     // Convert buffer into string then parse the JSON string to object
                     var jsonObj = JSON.parse(response.toString('utf8'));
-                    console.log(jsonObj);
                     var topPrediction = jsonObj["Predictions"][0];
+                    console.log("Bandera 2")
     
                     // make sure we only get confidence level with 0.80 and above
                     if (topPrediction.Probability >= 0.80) {
@@ -149,7 +149,8 @@ bot.dialog('dialogRoya',[
                         session.send('¡Lo siento! No sé lo que es eso 😕');
                     }
                 }).catch(function (error) {
-                    console.log(error);
+                console.log("JIMMY");
+                console.log(error);
                     session.send('❗ Vaya, hay algo mal con el procesamiento de la imagen. Inténtalo de nuevo.❗');
                 });
         }
